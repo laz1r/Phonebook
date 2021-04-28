@@ -69,13 +69,13 @@ public class PhoneBook {
 				boolean nameInList = false;
 				Scanner name = new Scanner(System.in);
 				String n = name.nextLine();
+				
 				// Iterate thru linked list
 				// - If matches name , print each one
-				//System.out.println(person.size()); // TEST
 				for(int i = 0; i < person.size(); i++ ) {
 					
-					if(person.get(i).getFirstName().equals(n)) { // use .equals
-						//System.out.println(person.get(i).getFirstName()); // TEST
+					if(person.get(i).getFirstName().equals(n)) { 
+						
 						// Print record
 						nameInList = true;
 						System.out.println(person.get(i).getFullName() + ", " + person.get(i).getAddress().getStreet() + 
@@ -85,7 +85,7 @@ public class PhoneBook {
 					}
 				}
 				if(nameInList == false) {
-					System.out.println("Name not in record."); // change string!
+					System.out.println("Name not in record."); 
 				}
 				
 			} else if(option == 2) {
@@ -93,11 +93,13 @@ public class PhoneBook {
 				boolean lastNameInList = false;
 				Scanner name = new Scanner(System.in);
 				String n = name.nextLine();
+				
 				// Iterate thru linked list,
 				// - If matches last name, print each
 				for(int i = 0; i < person.size(); i++ ) {
 					
 					if(person.get(i).getLastName().equals(n)) {
+						
 						// Print record
 						lastNameInList = true;
 						System.out.println(person.get(i).getFullName() + ", " + person.get(i).getAddress().getStreet() + 
@@ -114,14 +116,12 @@ public class PhoneBook {
 				boolean fullNameInList = false;
 				Scanner name = new Scanner(System.in);
 				String n = name.nextLine();
-				// Iterate thru linked list
-				// ** HOW based on question prompt ??
-				// * To search by full name
-				// Create string fullName and put in constructor ** NEED to refactor later!!
+				
+				// Create string fullName and put in constructor 
 				for(int i = 0; i < person.size(); i++ ) {
 					
 					if(person.get(i).getFullName().equals(n)) {
-						// Print record
+						
 						fullNameInList = true;
 						System.out.println(person.get(i).getFullName() + ", " + person.get(i).getAddress().getStreet() + 
 						          ", " + person.get(i).getAddress().getCity() + ", " + person.get(i).getAddress().getState() + 
@@ -129,7 +129,7 @@ public class PhoneBook {
 					}
 				}
 				if(fullNameInList == false) {
-					System.out.println("Name not in records."); // fix string
+					System.out.println("Name not in records."); 
 				}
 				
 				
@@ -138,7 +138,7 @@ public class PhoneBook {
 				boolean teleInList = false;
 				Scanner number = new Scanner(System.in);
 				Long n = number.nextLong();
-				// Iterate
+				
 				for(int i = 0; i < person.size(); i++ ) {
 					
 					if(person.get(i).getTelephone() == n) {
@@ -162,7 +162,7 @@ public class PhoneBook {
 				for(int i = 0; i < person.size(); i++ ) {
 					
 					if(person.get(i).getAddress().getCity().equals(n) || person.get(i).getAddress().getState().equals(n)) {
-						// Print record
+						
 						cityStateInList = true;
 						System.out.println(person.get(i).getFullName() + ", " + person.get(i).getAddress().getStreet() + 
 						          ", " + person.get(i).getAddress().getCity() + ", " + person.get(i).getAddress().getState() + 
@@ -187,8 +187,7 @@ public class PhoneBook {
 				System.out.println("Add new entry: ");
 				
 				Scanner str = new Scanner(System.in);
-				String line = str.nextLine(); //  ** what if user enters number?? 
-											  //      or incorrect input??
+				String line = str.nextLine(); 
 				
 				String[] splitString = line.split(",");
 				String regex = "^\\s+"; // regex to delete leading whitespaces
@@ -209,14 +208,13 @@ public class PhoneBook {
 				String fname = splitFullName[0]; 
 				// get last name
 				String lname = splitFullName[splitFullName.length-1]; 
-				// ** Method to convert array to string -  String.join(" ", splitFullName)
 				String fullName = splitString[0];
 				
 				
 				// Convert splitString 4,5 to long 
 				//          zip and telephone strings to long int
-				zip = Long.parseLong(splitString[4]); // if user enters number at nextLine(), get array out of index
-													  // error here !!!
+				zip = Long.parseLong(splitString[4]);
+													
 				tn = Long.parseLong(splitString[5]);
 				System.out.println("tn: " + tn);
 				
@@ -244,31 +242,30 @@ public class PhoneBook {
 					boolean userInputTnInsideList = false;
 					
 					Scanner number = new Scanner(System.in);
-					Long tn = number.nextLong(); // Long an object, must use .equals ??
+					Long tn = number.nextLong(); 
 					System.out.println("tn: " + tn);
+					
 					// break if user pressed 0 to exit
 					if(tn == 0) {
 						break;
 					}
 					
-					for(int i = 0; i < person.size(); i++) { // continues to check for tn even after first occurence of tn found ** 
-						// condition is false !!
+					for(int i = 0; i < person.size(); i++) { 
+						
 						System.out.println("print out inside for loop: " + person.get(i).getTelephone());
 						if(tn.equals(person.get(i).getTelephone())) {
 							
 							userInputTnInsideList = true;
 							
-							System.out.println("Enter new record information: "); // change string!!
+							System.out.println("Enter new record information: "); 
 							Scanner n = new Scanner(System.in);
 							String str = n.nextLine();
-							//System.out.println("String: " + str); // TEST
 							
 							// Update record at this index
 							// 1. collect index number
 							int indexNumber = i;
 							// 2. delete the record
 							person.remove(indexNumber);
-							// 3. put new record at the collected index
 							
 							// method to split string and place in splitString array
 							String[] splitString = str.split(","); // split user input by the spaces
@@ -283,7 +280,7 @@ public class PhoneBook {
 								
 								newString = splitString[j].replaceAll(regex, "");
 								splitString[j] = newString;	
-								//System.out.println("elements of array" + j + " " + splitString[j]); //TEST
+								
 							}
 							
 							// method to split full name into array of strings
@@ -291,18 +288,14 @@ public class PhoneBook {
 							
 							// get first name
 							String fname = splitFullName[0]; 
-							//System.out.println("first name: " + fname); // TEST
+							
 							// get last name
 							String lname = splitFullName[splitFullName.length-1]; 
-							//System.out.println("last name: " + lname); // TEST
-							// ** Method to convert array to string -  String.join(" ", splitFullName)
 							String fullName = splitString[0];
-							//System.out.println("full name: " + fullName); // TEST
 							
 							
 							// Convert splitString 4,5 to long 
 							//          zip and telephone strings to long int
-							// System.out.println(splitString[4]); // TEST
 							zip = Long.parseLong(splitString[4]); 
 							tn2 = Long.parseLong(splitString[5]);
 							System.out.println("tn2: " + tn2);
@@ -347,12 +340,12 @@ public class PhoneBook {
 				if(countOfTnsRemoved > 1) {
 					System.out.println(countOfTnsRemoved + " record(s) deleted.");
 				}else {
-					System.out.println("Phone number not in records."); // change string !!
+					System.out.println("Phone number not in records.");
 				}
 				
 			}else if( option == 0) {
 				appState = false;
-				System.out.println("Exiting Console Phonebook v1.0 ..."); // work on string !!
+				System.out.println("Exiting Console Phonebook v1.0 ..."); 
 			}					
 		}
 	}
